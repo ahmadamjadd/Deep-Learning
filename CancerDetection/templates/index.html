@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oral Cancer Detection</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #2c3e50;
+        }
+
+        form {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        label {
+            font-size: 1.2rem;
+            color: #34495e;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        input[type="file"] {
+            padding: 0.8rem;
+            margin-bottom: 1.5rem;
+            border: 2px solid #3498db;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        button {
+            padding: 1rem 2rem;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        h2 {
+            margin-top: 2rem;
+            font-size: 1.5rem;
+            color: #2ecc71;
+        }
+
+        img {
+            margin-top: 1rem;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Oral Cancer Detection</h1>
+        <form action="{{ url_for('predict') }}" method="post" enctype="multipart/form-data">
+            <label for="file">Upload an image:</label>
+            <input type="file" name="file" id="file" accept="image/*" required>
+            <button type="submit">Predict</button>
+        </form>
+
+        {% if label %}
+            <h2>Prediction: {{ label }}</h2>
+            <img src="{{ url_for('static', filename='uploads/' + filepath.split('/')[-1]) }}" alt="Uploaded Image" width="300">
+        {% endif %}
+    </div>
+</body>
+</html>
