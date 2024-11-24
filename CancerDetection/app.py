@@ -46,7 +46,7 @@ def predict():
 
         # Predict using the loaded model
         prediction = model.predict(img)
-        class_label = 'Cancerous' if prediction[0][0] > 0.06 else 'Normal'
+        class_label = 'Cancerous' if prediction[0][0] > 0.3 else 'Normal'
 
         return render_template('index.html', label=class_label, filepath=filepath)
 
